@@ -1,0 +1,154 @@
+html, body {
+  width: 100vw;
+  height: 100vh;
+
+  margin: 0;
+  padding: 0;
+
+  overflow: hidden;
+
+  color: #fff;
+  background-color: #111;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  49.9% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  99.9% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#input {
+  $padding: 10;
+  $paddingLeft: 45;
+
+  background-color: #212121;
+
+  position: absolute;
+  user-select: none;   
+
+  resize: none;
+
+  cursor: text;
+
+  width: calc(100vw - #{$padding*2 + $paddingLeft}px);
+  height: calc(100vh - #{$padding*2 + $paddingLeft}px);
+  margin: 0;
+  padding: 0;
+
+  padding: #{$padding}px;
+  padding-left: #{$padding+$paddingLeft}px;
+
+  border: none;
+  
+  outline-style: none;
+  white-space: pre;
+
+  overflow-y: scroll;
+  overflow-x: auto;
+
+  font-size: 20px;
+  font-weight: 100;
+
+  counter-reset: rows;
+
+  letter-spacing: 1.2px;
+
+  & > span {
+    position: absolute;
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  & > div {
+    height: 26px;
+    line-height: 26px;
+    position: relative;
+
+    &::before {
+      counter-increment: rows;
+      display: block;
+      width: 30px;
+      text-align: left;
+      content: counter(rows);
+      position: absolute;
+
+      color: #404040;
+      margin-left: -35px;
+
+      // background-color: rgba(0,0,0,0.2)
+    }
+    &.cur {
+      background-color: rgba(0,0,0,0.2);
+
+      &::before {
+        color: #6e6e6e;
+      } 
+    }
+
+    .cursor {
+      position: absolute;
+      display: inline-block;
+      height: inherit;
+      width: 2px;
+      margin-left: -2px;
+      top: 0px;
+
+      background-color: rgb(221, 202, 31);
+
+      animation: blink infinite linear 0.8s;
+    }
+  }
+}
+
+
+.LineComment{
+  color:rgb(129, 129, 129);
+}
+.Keyword{
+  font-weight:bold; 
+  color: #8382D3 ;
+}
+
+.String{
+  color:#90DB7C;
+  font-weight:normal;
+}
+
+.Punctuator, .RegularExpression{
+  color: #7FD8F9;
+}
+
+.Identifier {
+  &.object, &.object.callee {
+    color: rgb(150, 150, 66);
+  }
+
+  &.object.property {
+    color: #fff;
+  }
+
+  &.callee, &.property.callee{
+    color: #4382E6
+  }
+
+  &.params {
+    color: rgb(194, 10, 86);
+  }
+}
+
+.Numeric {
+  color: rgb(255, 193, 77)
+}
